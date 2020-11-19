@@ -18,12 +18,12 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 ul {
@@ -42,20 +42,25 @@ a {
   color: #48556a;
 }
 
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  font-size: 15px;
+}
+
 main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: (1fr)[1];
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-areas: "image-container image-container"  "content  content";
   margin: 30px;
   background-color: white;
   border-radius: 10px;
@@ -72,18 +77,22 @@ main {
 
 @media only screen and (min-width: 960px) {
   main {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2 1fr);
+    -ms-grid-rows: (1fr)[2];
+        grid-template-rows: repeat(2 1fr);
+        grid-template-areas: "image-container content" "image-container content";
     max-width: 50rem;
   }
 }
 
 main .image-container {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: image-container;
   background-image: url("/images/drawers.jpg");
   background-size: 100%;
   -o-object-fit: contain;
@@ -99,32 +108,51 @@ main .image-container {
 
 @media only screen and (min-width: 960px) {
   main .image-container {
-    width: 100%;
-    background-size: 100%;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: image-container;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 10px;
     -o-object-fit: contain;
        object-fit: contain;
+    height: auto;
+    width: auto;
   }
 }
 
-main .info {
+main .content-card {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: content;
   margin: 20px 20px;
   padding-bottom: 10px;
 }
 
-main .info h2 {
-  color: #48556a;
-  line-height: 1.2;
-  margin-bottom: 20px;
+@media only screen and (min-width: 960px) {
+  main .content-card {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: content;
+  }
 }
 
-main .info p {
+main .content-card .info h2 {
+  color: #48556a;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+main .content-card .info p {
   color: #48556a;
   word-spacing: 1px;
   line-height: 1.6;
 }
 
 @media only screen and (min-width: 960px) {
-  main .info {
+  main .content-card .info {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -132,45 +160,55 @@ main .info p {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
   }
 }
 
-main .bio {
+main .content-card .bio {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-line-pack: center;
       align-content: center;
-  position: relative;
-  margin: 20px 10px;
+  margin: 20px 10px 0 10px;
 }
 
-main .bio img[alt="Michelle"] {
+main .content-card .bio img[alt="Michelle"] {
   border-radius: 90px;
   width: 20%;
-  margin-right: 20px;
+  margin-right: 1em;
 }
 
-main .bio .bio-details {
+main .content-card .bio .bio-details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-main .bio .bio-details .name {
+main .content-card .bio .bio-details .name {
   line-height: 1.5;
 }
 
-main .bio .bio-details .name p {
+main .content-card .bio .bio-details .name p {
   color: #48556a;
   font-size: 14px;
 }
 
-main .bio .bio-details .name time {
+main .content-card .bio .bio-details .name time {
   color: #9eafc2;
 }
 
-main .bio .share-icon {
+main .content-card .bio .share-icon {
+  -ms-flex-item-align: center;
+      align-self: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -186,18 +224,32 @@ main .bio .share-icon {
   height: 2rem;
   border-radius: 50%;
   background-color: #ecf2f8;
-  cursor: pointer;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
-main .bio .share-icon:hover {
+@media only screen and (min-width: 960px) {
+  main .content-card .bio .share-icon {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+main .content-card .bio .share-icon:hover {
   background-color: #9eafc2;
 }
 
-main .bio .share-icon img:hover {
+main .content-card .bio .share-icon img {
+  width: 1em;
+}
+
+main .content-card .bio .share-icon img:hover {
   color: white;
 }
 
-main .share {
+main .content-card .share {
   background-color: #6d7f97;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -218,23 +270,18 @@ main .share {
   display: none;
 }
 
-main .share p {
+main .content-card .share p {
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 0.5rem;
   color: #9eafc2;
 }
 
-main .share img {
+main .content-card .share img {
   width: 1rem;
 }
 
-main .active {
+main .content-card .active {
   display: inline;
-}
-
-footer {
-  text-align: center;
-  font-size: 15px;
 }
 /*# sourceMappingURL=index.css.map */

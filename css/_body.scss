@@ -1,8 +1,11 @@
 main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-areas:
+        "image-container image-container" 
+        "content  content"
+    ;
     margin: 30px;
     background-color: white;
     border-radius: 10px;
@@ -14,12 +17,18 @@ main{
     }
 
     @include responsive(tab-land){
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: repeat(2 1fr);
+        grid-template-rows: repeat(2 1fr);
+        grid-template-areas: 
+        "image-container content"
+        "image-container content"
+        ;
         max-width: 50rem;
     }
 
     .image-container{
+        grid-area: image-container;
         background-image: url('/images/drawers.jpg');
         background-size: 100%;
         object-fit: contain;
@@ -32,21 +41,30 @@ main{
         overflow: hidden;
 
         @include responsive(tab-land){
-            width: 100%;
-            background-size: 100%;
+            grid-area: image-container;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 10px;
             object-fit: contain;
+            height: auto;
+            width: auto;
         }
 
     }
 
-    .info{
+    .content-card{
+        grid-area: content;
         margin: 20px 20px;
         padding-bottom: 10px;
 
+        @include responsive(tab-land){
+            grid-area: content;
+        }
+    
+    .info{
         h2{
             color: $primarycolor;
             line-height: 1.2;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         p{
@@ -58,25 +76,26 @@ main{
         @include responsive(tab-land){
             display: flex;
             flex-direction: column;
+            flex: 1 1 100%;
         }
     }
 
     .bio{
         display: flex;
-        // justify-content: space-between;
         align-content: center;
-        position: relative;
-        margin: 20px 10px;
-        // width: 20rem;
+        // position: relative;
+        margin: 20px 10px 0 10px;
 
         img[alt="Michelle"]{
             border-radius: 90px;
             width: 20%;
-            margin-right: 20px;
+            margin-right: 1em;
         }
 
         .bio-details{
             display: flex;
+            flex: 1 1 auto;
+            align-items: center;
 
         .name{
             line-height: 1.5;
@@ -93,6 +112,7 @@ main{
     }
 
         .share-icon{
+            align-self: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -102,12 +122,19 @@ main{
             height: 2rem;
             border-radius: 50%;
             background-color: $primarycolor4;
-            cursor: pointer;
+            flex-shrink: 0;
+
+
+            @include responsive(tab-land){
+                flex-direction: row;
+            }
 
             &:hover{
                 background-color: $primarycolor3;
             }
+
             img{
+                width: 1em;
                 &:hover{
                     color: white;
                 }
@@ -142,10 +169,6 @@ main{
         }
     }
     .active{display: inline;}
+    }
 
-}
-
-footer{
-    text-align: center; 
-    font-size: 15px; 
 }
