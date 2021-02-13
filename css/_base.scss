@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html{
+    height: 100%;
+}
+
 body{
     background-color: $primarycolor4;
     font-family: $font;
@@ -13,7 +17,8 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+    min-height: 100%;
+} 
 
 ul{
     list-style: none;

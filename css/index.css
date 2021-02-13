@@ -6,6 +6,10 @@
           box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: #ecf2f8;
   font-family: "Manrope", sans-serif;
@@ -24,6 +28,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  min-height: 100%;
 }
 
 ul {
@@ -250,7 +255,6 @@ main .content-card .bio .share-icon img:hover {
 }
 
 main .content-card .share {
-  background-color: #6d7f97;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -260,28 +264,30 @@ main .content-card .share {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: #6d7f97;
   padding: 10px;
   position: absolute;
-  top: 10rem;
-  left: 2rem;
-  right: 2rem;
-  left: 2rem;
-  width: 20rem;
-  display: none;
+  border-radius: 0 0 10px 10px;
+  width: auto;
+  visibility: hidden;
 }
 
 main .content-card .share p {
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 0.5rem;
-  color: #9eafc2;
+  color: #ecf2f8;
 }
 
 main .content-card .share img {
   width: 1rem;
+  cursor: pointer;
 }
 
 main .content-card .active {
-  display: inline;
+  visibility: visible;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=index.css.map */
