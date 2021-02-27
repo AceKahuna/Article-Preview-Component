@@ -233,6 +233,18 @@ main .content-card .bio .share-icon {
       flex-shrink: 0;
 }
 
+main .content-card .bio .share-icon:hover {
+  background-color: #9eafc2;
+}
+
+main .content-card .bio .share-icon img[alt="share"] {
+  width: 1em;
+}
+
+main .content-card .bio .share-icon img[alt="share"]:hover {
+  color: white;
+}
+
 @media only screen and (min-width: 960px) {
   main .content-card .bio .share-icon {
     -webkit-box-orient: horizontal;
@@ -240,18 +252,6 @@ main .content-card .bio .share-icon {
         -ms-flex-direction: row;
             flex-direction: row;
   }
-}
-
-main .content-card .bio .share-icon:hover {
-  background-color: #9eafc2;
-}
-
-main .content-card .bio .share-icon img {
-  width: 1em;
-}
-
-main .content-card .bio .share-icon img:hover {
-  color: white;
 }
 
 main .content-card .share {
@@ -268,7 +268,7 @@ main .content-card .share {
   padding: 10px;
   position: absolute;
   border-radius: 0 0 10px 10px;
-  width: auto;
+  width: 40%;
   visibility: hidden;
 }
 
@@ -285,7 +285,7 @@ main .content-card .share img {
 }
 
 main .content-card .active {
-  visibility: visible;
+  visibility: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

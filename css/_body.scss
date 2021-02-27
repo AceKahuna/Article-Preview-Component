@@ -83,7 +83,6 @@ main{
     .bio{
         display: flex;
         align-content: center;
-        // position: relative;
         margin: 20px 10px 0 10px;
 
         img[alt="Michelle"]{
@@ -124,20 +123,20 @@ main{
             background-color: $primarycolor4;
             flex-shrink: 0;
 
-
-            @include responsive(tab-land){
-                flex-direction: row;
-            }
-
             &:hover{
                 background-color: $primarycolor3;
             }
 
-            img{
+            img[alt="share"]{
                 width: 1em;
+                
                 &:hover{
                     color: white;
                 }
+            }
+
+            @include responsive(tab-land){
+                flex-direction: row;
             }
         }       
     }
@@ -150,7 +149,7 @@ main{
         padding: 10px;
         position: absolute;
         border-radius: 0 0 10px 10px;
-        width: auto;
+        width: 40%;
 
         visibility: hidden;
 
@@ -167,7 +166,7 @@ main{
         }
     }
     .active{
-        visibility: visible;
+        visibility: hidden;
         display: flex;
     }
     }
